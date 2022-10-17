@@ -1,0 +1,41 @@
+{% extends 'core/main.html' %}
+
+{% block title %} Log in | {% endblock %}
+
+{% block content %}
+<div class="p-8 lg:p-17 text-center">
+    <h1 class="text-3xl lg:text-6xl text-white">Log in</h1>
+</div>
+
+    <form method="post" action="." class="lg:w-1/5 mx-auto px-6">
+        {% csrf_token %}
+
+        <div>
+            <label>Enter Username</label>
+            <input type="text" name="username">
+            
+
+        </div>
+        <div>
+            <label>Enter Password</label>
+            <input type="password" name="password">
+            
+
+        </div>
+
+        {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <div> 
+                        <p>{{ error|escape }}</p>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+
+        <button class="rounded-xl px-3 py-2 text-white bg-slate-700 hover:bg-slate-600">Log in</button>
+
+
+        
+    </form>
+{% endblock %}
